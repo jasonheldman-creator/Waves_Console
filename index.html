@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waves Intelligence Console</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <span class="logo">WAVES</span>
+                <span class="separator">|</span>
+                <span class="subtitle">Intelligence Institutional Console</span>
+            </div>
+            <div class="header-right">
+                <span class="time" id="currentTime"></span>
+                <span class="separator">|</span>
+                <span class="user">USER: ADMIN</span>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Market Overview Panel -->
+            <div class="panel market-overview">
+                <div class="panel-header">MARKET OVERVIEW</div>
+                <div class="panel-content">
+                    <div class="ticker-grid">
+                        <div class="ticker-item">
+                            <span class="ticker-symbol">S&P 500</span>
+                            <span class="ticker-price positive">4,783.45</span>
+                            <span class="ticker-change positive">+1.24%</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-symbol">DOW</span>
+                            <span class="ticker-price positive">37,545.33</span>
+                            <span class="ticker-change positive">+0.89%</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-symbol">NASDAQ</span>
+                            <span class="ticker-price negative">14,855.62</span>
+                            <span class="ticker-change negative">-0.45%</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-symbol">GOLD</span>
+                            <span class="ticker-price positive">2,048.75</span>
+                            <span class="ticker-change positive">+0.67%</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-symbol">CRUDE OIL</span>
+                            <span class="ticker-price negative">72.34</span>
+                            <span class="ticker-change negative">-1.23%</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-symbol">BTC/USD</span>
+                            <span class="ticker-price positive">42,156.89</span>
+                            <span class="ticker-change positive">+2.34%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Watchlist Panel -->
+            <div class="panel watchlist">
+                <div class="panel-header">WATCHLIST</div>
+                <div class="panel-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>SYMBOL</th>
+                                <th>PRICE</th>
+                                <th>CHANGE</th>
+                                <th>VOLUME</th>
+                            </tr>
+                        </thead>
+                        <tbody id="watchlistBody">
+                            <tr>
+                                <td>AAPL</td>
+                                <td>185.92</td>
+                                <td class="positive">+2.14%</td>
+                                <td>52.4M</td>
+                            </tr>
+                            <tr>
+                                <td>MSFT</td>
+                                <td>378.91</td>
+                                <td class="positive">+1.45%</td>
+                                <td>24.8M</td>
+                            </tr>
+                            <tr>
+                                <td>GOOGL</td>
+                                <td>142.87</td>
+                                <td class="negative">-0.78%</td>
+                                <td>18.2M</td>
+                            </tr>
+                            <tr>
+                                <td>TSLA</td>
+                                <td>242.64</td>
+                                <td class="positive">+3.21%</td>
+                                <td>115.7M</td>
+                            </tr>
+                            <tr>
+                                <td>AMZN</td>
+                                <td>151.94</td>
+                                <td class="positive">+0.92%</td>
+                                <td>38.6M</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- News Feed Panel -->
+            <div class="panel news-feed">
+                <div class="panel-header">NEWS FEED</div>
+                <div class="panel-content">
+                    <div class="news-items" id="newsItems">
+                        <div class="news-item">
+                            <span class="news-time">15:18</span>
+                            <span class="news-text">Fed signals potential rate cut in Q2 2025</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-time">15:12</span>
+                            <span class="news-text">Tech stocks rally on strong earnings reports</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-time">15:05</span>
+                            <span class="news-text">Oil prices decline amid global supply concerns</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-time">14:58</span>
+                            <span class="news-text">Bitcoin surges past $42K on institutional demand</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-time">14:45</span>
+                            <span class="news-text">European markets close higher across the board</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Panel -->
+            <div class="panel chart">
+                <div class="panel-header">CHART - S&P 500 INTRADAY</div>
+                <div class="panel-content">
+                    <div class="chart-container" id="chartContainer">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Panel -->
+            <div class="panel portfolio">
+                <div class="panel-header">PORTFOLIO SUMMARY</div>
+                <div class="panel-content">
+                    <div class="portfolio-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">TOTAL VALUE</span>
+                            <span class="stat-value">$1,245,678.90</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">DAY CHANGE</span>
+                            <span class="stat-value positive">+$12,456.78 (+1.01%)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">CASH</span>
+                            <span class="stat-value">$156,789.12</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">BUYING POWER</span>
+                            <span class="stat-value">$313,578.24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Panel -->
+            <div class="panel analytics">
+                <div class="panel-header">ANALYTICS</div>
+                <div class="panel-content">
+                    <div class="analytics-grid">
+                        <div class="metric">
+                            <span class="metric-label">VIX</span>
+                            <span class="metric-value">13.45</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">PUT/CALL</span>
+                            <span class="metric-value">0.87</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">ADV/DEC</span>
+                            <span class="metric-value positive">2.34</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">TICK</span>
+                            <span class="metric-value positive">+524</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Command Line Interface -->
+        <div class="command-line">
+            <span class="prompt">WAVES&gt;</span>
+            <input type="text" id="commandInput" class="command-input" placeholder="Enter command..." autocomplete="off">
+            <div class="command-output" id="commandOutput"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
