@@ -407,8 +407,3 @@ body {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
 }
-
-.command-input:focus::after {
-    content: '▋';
-    animation: blink 1s infinite;
-}
