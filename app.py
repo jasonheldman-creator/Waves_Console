@@ -15,7 +15,6 @@ st.set_page_config(
 # Dark theme colors (no formatting inside CSS to avoid syntax issues)
 # ---------------------------------------------------------
 DARK_BG = "#020617"      # almost black
-CARD_BG = "#020818"
 TEXT_MAIN = "#E5E7EB"
 TEXT_MUTED = "#9CA3AF"
 ACCENT = "#22C55E"
@@ -702,12 +701,6 @@ if trade_file is not None:
                 st.info("No trades found in the log for this Wave.")
             else:
                 trades["Timestamp"] = pd.to_datetime(trades["Timestamp"], errors="coerce")
-                trades["Quantity"] = pd.to_numeric(trades["Quantity"], errors="coerce")
-                trades["Price"] = pd.to_numeric(trades["Price"], errors="coerce")
-
-                if "Dollar_Amount" not in trades.columns:
-                    trades["Dollar_Amount"] = trades["Quantity"] * trades["Price"]
-
                 trades = trades.dropna(subset=["Timestamp", "Ticker"])
                 trades = trades.sort_values("Timestamp", ascending=False)
 
@@ -716,6 +709,11 @@ if trade_file is not None:
                 ].copy()
 
                 if not recent.empty:
+                    recent["Quantity"] = pd.to_numeric(recent["Quantity"], errors="coerce")
+                    recent["Price"] = pd.to_numeric(recent["Price"], errors="coerce")
+
+                    if "Dollar_Amount" not in recent.columns:
+                        recent["Dollar_Amount"] = recent["Quantity"] * recent["Price"]
                     recent["Date"] = recent["Timestamp"].dt.date
                     recent["SignedAmount"] = np.where(
                         recent["Side"].str.upper().isin(["SELL", "TRIM"]),
@@ -755,8 +753,8 @@ if trade_file is not None:
                 log = trades.head(50).copy()
                 log_view = log[
                     ["Timestamp", "Ticker", "Side", "Quantity", "Price", "Dollar_Amount"]
-                ]
-                log_view["Ticker"] = [ticker_link(t) for t in log_view["Ticker"]]
+                ].copy()
+                log_view["Ticker"] = log_view["Ticker"].apply(ticker_link)
                 st.markdown(log_view.to_markdown(index=False), unsafe_allow_html=True)
 
 # ---------------------------------------------------------
